@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Additional styles for video components */
+.mirror {
+    transform: scaleX(-1);
+}
