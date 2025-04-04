@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import VideoGrid from './components/VideoGrid';
 import WebRTCService from './services/WebRTCService';
-import SocketService from './services/SocketService';
 import { 
     MicOnIcon, MicOffIcon, CameraOnIcon, CameraOffIcon, 
     EndCallIcon, ShareIcon 
@@ -24,7 +23,6 @@ const VideoRoom = () => {
     const [error, setError] = useState<string | null>(null);
     const [isCameraOn, setIsCameraOn] = useState(true);
     const [isMicOn, setIsMicOn] = useState(true);
-    const [connectionStates, setConnectionStates] = useState<Map<string, RTCPeerConnectionState>>(new Map());
     const [activePeers, setActivePeers] = useState(0);
 
     // Make sure we have required information
