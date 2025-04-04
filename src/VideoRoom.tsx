@@ -24,6 +24,8 @@ const VideoRoom = () => {
     const [isCameraOn, setIsCameraOn] = useState(true);
     const [isMicOn, setIsMicOn] = useState(true);
     const [activePeers, setActivePeers] = useState(0);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [connectionStates, setConnectionStates] = useState<Map<string, RTCPeerConnectionState>>(new Map());
 
     // Make sure we have required information
     useEffect(() => {
@@ -62,7 +64,7 @@ const VideoRoom = () => {
 
                 // Monitor connection states
                 WebRTCService.onConnectionStateChange((userId, state) => {
-                    setConnectionStates(prev => {
+                    setConnectionStates((prev: Map<string, RTCPeerConnectionState>) => {
                         const newStates = new Map(prev);
                         newStates.set(userId, state);
                         return newStates;
