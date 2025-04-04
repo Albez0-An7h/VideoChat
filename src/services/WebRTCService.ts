@@ -82,7 +82,8 @@ class WebRTCService {
             // Create peer connections for existing users
             users.forEach(user => {
                 // Don't create a connection to ourselves
-                if (user.id !== SocketService.getSocketId()) {
+                const socketId = SocketService.getSocketId();
+                if (socketId !== user.id) {
                     this.createPeerConnection(user);
                 }
             });
@@ -205,7 +206,8 @@ class WebRTCService {
         });
 
         // If we're the initiator (the one who joined later), create an offer
-        if (SocketService.getSocketId()! > user.id) {
+        const socketId = SocketService.getSocketId();
+        if (socketId && socketId > user.id) {
             try {
                 const offer = await peerConnection.createOffer({
                     offerToReceiveAudio: true,

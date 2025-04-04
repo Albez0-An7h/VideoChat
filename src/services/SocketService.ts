@@ -97,7 +97,7 @@ class SocketService {
     }
 
     public getSocketId(): string | null {
-        return this.socket ? this.socket.id : null;
+        return this.socket?.id || null;
     }
 }
 
